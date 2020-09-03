@@ -4,7 +4,7 @@
              x:Class="Layouts_App_.MainPage">
 
     <StackLayout>
-        <Frame BackgroundColor="#2100F3" Padding="40" CornerRadius="50">
+        <Frame BackgroundColor="#aaaaaa" Padding="40" CornerRadius="50">
             <Label Text="Tere tulemast Xamarin.Forms!" 
                    HorizontalTextAlignment="Center" 
                    TextColor="White" 

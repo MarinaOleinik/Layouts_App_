@@ -10,7 +10,7 @@ namespace Layouts_App_
         {
             InitializeComponent();
 
-            MainPage = new StackPage();//  Стартовая и единственная страница MainPage()
+            MainPage = new Valgusfoor2();//  Стартовая и единственная страница MainPage()
         }
         protected override void OnStart()
         {
