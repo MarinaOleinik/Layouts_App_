@@ -23,7 +23,8 @@
                    FontSize="Large"
                 />
             </Frame>
-            <Frame x:Name="roh" BackgroundColor="Gray" 
+            <Frame x:Name="roh" 
+                   BackgroundColor="Gray" 
                    Padding="80" 
                    CornerRadius="90" 
                    Margin="80,0">
@@ -32,15 +33,23 @@
                    FontSize="Large"
                 />
             </Frame>
-            <StackLayout Orientation="Horizontal">
+            <StackLayout x:Name="Fon" Orientation="Horizontal">
                 <Button x:Name="on" 
                         Text="Sisse" 
                         HorizontalOptions="StartAndExpand"
                         Clicked="on_Clicked"/>
                 <Button x:Name="off" 
                         Text="Välja" 
-                        HorizontalOptions="EndAndExpand"
+                        HorizontalOptions="Center"
                         Clicked="off_Clicked"/>
+                <Button x:Name="Random"
+                        Text="Random"
+                        HorizontalOptions="EndAndExpand"
+                        Clicked="Random_Clicked"/>
+                <Button x:Name="Oma"
+                        Text="Minu oma"
+                        HorizontalOptions="EndAndExpand"
+                        Clicked="Oma_Clicked"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -1,0 +1,95 @@
+﻿<Frame>
+...
+
+<telerikDataControls:RadListView x:Name="sizesListView" Margin="2,0,2,2">
+                            <telerikDataControls:RadListView.ItemTemplate>
+                                <DataTemplate>
+                                    <listView:ListViewTemplateCell>
+                                        <listView:ListViewTemplateCell.View>
+                                            <Frame Padding="0" CornerRadius="3.5" BackgroundColor="{Binding MainColor, Source={x:Static local:SelectedColor.CurrentColor}}">
+                                                    <Grid RowSpacing="0">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="*"/>
+                                                            <RowDefinition Height="*"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Label Text="{Binding Path=Key}" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                        <Label Text="{Binding Path=Value}"  Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                    </Grid>
+                                                </Frame>
+                                        </listView:ListViewTemplateCell.View>
+                                    </listView:ListViewTemplateCell>
+                                </DataTemplate>
+                            </telerikDataControls:RadListView.ItemTemplate>
+                            <telerikDataControls:RadListView.LayoutDefinition>
+                                <listView:ListViewGridLayout SpanCount="3" x:Name="SizeSpanCount" HorizontalItemSpacing="3"/>
+                            </telerikDataControls:RadListView.LayoutDefinition>
+</telerikDataControls:RadListView>
+<Frame.GestureRecognizers>
+    <TapGestureRecognizer 
+        Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+    </Frame.GestureRecognizers>
+</Frame>
+public ExtendedButton()
+        {
+            InitializeComponent();
+
+            selectedBorder = Color.FromHex("#FF8A00");
+            defaultBorder = Color.FromHex("#FFFFFF");
+            SelectedColor.CurrentColor.MainColor = defaultBorder;
+        }
+
+private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            _isSelected = !_isSelected;
+            var frame = (Frame)sender;
+
+            if (_isSelected)
+            {
+                SelectedColor.CurrentColor.MainColor = selectedBorder;
+            }
+            else
+            {
+                SelectedColor.CurrentColor.MainColor = defaultBorder;
+            }
+        }
+
+public class SelectedColor : INotifyPropertyChanged
+    {
+        public static SelectedColor CurrentColor = new SelectedColor();
+
+        private Color _mainColor;
+
+        public Color MainColor
+        {
+            get { return _mainColor; }
+            set
+            {
+                _mainColor = value;
+                OnPropertyChanged(nameof(MainColor));
+            }
+        }
+
+        private Color _backgroundColor;
+
+        public Color BackgroundColor
+        {
+            get { return _backgroundColor; }
+            set
+            {
+                _backgroundColor = value;
+                OnPropertyChanged(nameof(BackgroundColor));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged == null)
+                return;
+
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+I expected this:
